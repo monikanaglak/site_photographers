@@ -129,7 +129,7 @@ function form_checking() {
             btn.removeAttribute("disabled");
           } else {
             textMessageError.innerHTML =
-              "Veuillez entrer un message plus long que 100 caractères";
+              "Veuillez entrer un message plus long que  caractères";
               textMessageError.style.display = "inline";
               btn.setAttribute("disabled", true)
           }
@@ -149,12 +149,12 @@ function form_checking() {
     
     if (surname == undefined) {
       lastNameError.innerHTML =
-        "Veuillez entrer 2 caractères ou plus pour le champ du nom de famille.";
+        "Veuillez entrer 2 caractères ou plus.";
         lastNameError.style.color = "white";
         send_btn.setAttribute("disabled", true);
     }
     if (emailIn == undefined) {
-      emailError.innerHTML = "Veuillez entrer un adresse email correct";
+      emailError.innerHTML = "Veuillez entrer une adresse email correct";
       emailError.style.color = "white";
       send_btn.setAttribute("disabled", true)
     }
@@ -165,7 +165,6 @@ function form_checking() {
     }
     else 
     if (name.match(valeur_string) && surname.match(valeur_string) && emailIn.match(emailRegex) && messageIn.length>=10) {
-      console.log(name)
       clean_form();
     }
     let elements_rechange = document.querySelectorAll(".switch");
