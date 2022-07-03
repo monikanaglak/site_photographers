@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link href="css/photographer.css" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/30340057e5.js" crossorigin="anonymous"></script>
+    <title>Fisheye - photographer</title>
+  </head>
+  <body>
+    <header role="banner">
+      <a href="./index.html" tabindex="0" class="switch">
+        <img src="./assets/images/logo.png" class="logo" alt="Fisheye HomePage" tabindex="0" class="switch"/>
+      </a>
+    </header>
+      <div class="container">
+        <!--Header photographer-->
+        <div id="photographer_card_header"></div>
+        <!--Menu dropdown-->
+         <div id="menu_dropdown" aria-lable="openning menu"></div>
+         <!--Container for the images-->
+         <section id="container_images" aria-lable="section photos"></section>
+         <!--Lightbox-->
+         <section class="lightbox_modal" aria-hidden="true" aria-modal="true"></section>
+         <main id="main" class="main"></main>
+         <!--Form-->
+        <section id="contact_modal" aria-hidden="true" role="dialog" aria-modal="true"
+        ></section>
+        <!--footer-->
+        <footer id="likes"></footer>
+		  </div>
+    <!-----factories-->
+    <script src="./scripts/factories/personal_photographer.js" defer></script>
+    <script src="./scripts/factories/gallery.js"></script>
+    <script src="./scripts/factories/lightbox.js"></script>
+    <script src="./scripts/factories/menu.js"></script>
+    <source src="./scripts/factories/accueil.js"></script>
+    <script src="./scripts/factories/formulaire.js"></script>
+  
+    <!--utilles-->
+    <script src="./scripts/pages/photographerPage.js" defer></script>
+    <script src="./scripts/utils/lightboxPage.js"></script>
+    <script src="./scripts/utils/like.js"></script>
+    <script src="./scripts/utils/countingLikes.js"></script>
+    <script src="/scripts/utils/contactForm.js"></script>
+  </body>
+</html>

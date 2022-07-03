@@ -1,0 +1,89 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "DM Sans", sans-serif;
+  margin: 0;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.logo {
+  width: 200px;
+}
+
+/*********header page d'accueil******************************/
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 90px;
+  margin: 0 20px;
+}
+h1 {
+  color: #901c1c;
+}
+/**********main page d'accueil****************/
+.photographer_section {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 70px;
+  margin-top: 100px;
+  width: 100%;
+  text-align: center;
+  padding-bottom: 100px;
+}
+.photographer_section article {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.photographer_section article h2 {
+  color: #d3573c;
+  font-size: 28px;
+  margin-top: 10px;
+  font-family: "DM sans serif";
+}
+.card_infos {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+h3 {
+  font-family: "DM sans serif";
+  font-size: 18px;
+  margin-top: -10px;
+  color: #d3573c;
+}
+article p {
+  padding: top 5px;
+  font-size: 13px;
+}
+.tagline {
+  font-weight: 400;
+}
+.photographer_section article img {
+  height: 200px;
+  width: 200px;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: 3px 7px 12px 0px rgba(0, 0, 0, 0.34);
+}
+.wrapper_city {
+  display: flex;
+  justify-content: space-around;
+  width: 50%;
+  height: 50px;
+  margin-top: -30px;
+}
+.price {
+  margin-top: -5px;
+  opacity: 0.7;
+  font-size: 11px;
+}
+.city{
+  color:#901c1c;
+}
