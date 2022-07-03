@@ -1,11 +1,15 @@
+//function blueprint of main page of the website
+
 function accueilFactory(photographer) {
-  const { id, name, portrait, city, country, tagline, price } = photographer;
+  const { id, name, portrait, city, country, tagline, price } = photographer; //destruct of information of object for each photographer
   const picture = `./assets/photographers/PhotographersPortrait/${portrait}`;
-  const link = `./photographer.html?id=${id}`;
+  const link = `./photographer.html?id=${id}`;//link brings us to the photographer page
+
   function accueilCardDOM() {
-    const article = document.createElement("article");
-    article.classList.add("photographer_section_cliked");
-    article.classList.add(id);
+    const article = document.createElement("article");//making dom element for every photographer
+    article.classList.add("photographer_section_cliked");//adding class
+    article.classList.add(id);//adding id
+    //making cube for every photographer
     const accueilCardDOM = `
         
             <a href="${link}" tabindex="0" class="switch">

@@ -5,5 +5,4 @@ function countingLikes(photographer_all_likes){
           total += all_likes[i];
     }
     return total;
-    
 };

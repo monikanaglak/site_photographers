@@ -1,22 +1,21 @@
 function form_checking() {
-  //getting all input user from form
   const firstName = document.getElementById("first_name");
   const lastName = document.getElementById("last_name");
   const email = document.getElementById("email");
   const textMessage = document.getElementById("your_message");
-  //constant values to compare input user
   const valeur_string =
     /^(?=.{2,50}$)[[a-zàáâäçèéêëìíîïñòóôöùúûü]+(?:['-.\s][a-z]+)*$/i;
   const emailRegex =
     /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-  //getting errors from factories dom
+
   const firstNameError = document.querySelector(".name_error");
   const lastNameError = document.querySelector(".last_name_error");
   const emailError = document.querySelector(".email_error");
   const textMessageError = document.querySelector(".your_message_error");
-  let name, surname, emailIn, messageIn;
-  //contact button from header photographer after click open form
   const contact_button = document.querySelector(".contact_buttons");
+  let name, surname, emailIn, messageIn;
+  
+
   contact_button.addEventListener("click", () => {
     const body_div = document.querySelector("body");
     const main_div = document.getElementById("main");
@@ -27,21 +26,21 @@ function form_checking() {
     body_div.classList.add("no-scroll");
     main_div.setAttribute("aria-hidden", "true");
     contact_modal.setAttribute("aria-hidden", "false");
-    /*function checking check if the form was fill correctly*/
-    /*checking();*/
+    
 
     /*getting all the element to put set attribute(tabindex -1)*/
     let elements_change = document.querySelectorAll(".switch");
     elements_change.forEach((el) => {
       el.setAttribute("tabIndex", "-1");
     });
-    //putting focus on modal title
     modal_title.focus();
     //closing form by x button
-    const close_form = document.querySelector(".close_form");
-
+    const closeForm = document.querySelector(".close_form");
+    
+    
     // At the closing of form we put all things like before, scroling ect//
-    close_form.addEventListener("click", () => {
+    closeForm.addEventListener("click", closing_by_x);
+    function closing_by_x() {
       const body_div = document.querySelector("body");
       const main_div = document.getElementById("main");
       const contact_modal = document.getElementById("contact_modal");
@@ -55,7 +54,7 @@ function form_checking() {
       chainging_tab_form();
       const contact_button = document.querySelector(".contact_me");
       contact_button.focus();
-    });
+    }
 
     // Fonction qui réinitialise toute la navigation au clavier
     function chainging_tab_form() {
@@ -66,177 +65,109 @@ function form_checking() {
     }
 
     firstName.addEventListener("focus", () => {
-      firstNameError.style.display = "none";
-    });
-    lastName.addEventListener("focus", () => {
-      lastNameError.style.display = "none";
-    });
-    email.addEventListener("focus", () => {
-      emailError.style.display = "none";
-    });
-    textMessage.addEventListener("focus", () => {
-      textMessageError.style.display = "none";
-    });
-    //check up during writting
-    firstName.addEventListener("input", (e) => {
-      name = e.target.value;
-        if (name.length <2 ) {
-          e.target.style.border = "4px solid red";
-          firstNameError.innerHTML = "Veuillez entrer 2 caractères ou plus pour le champ du prénom.Sans chiffres";
-          submit_btn.setAttribute("disabled", true);
-        } 
-        else {
-          e.target.style.border = "4px solid #51d115";
-          firstNameError.style.display = "none";
-          submit_btn.removeAttribute("disabled");
+    firstNameError.style.display = "none";
+  });
+  lastName.addEventListener("focus", () => {
+    lastNameError.style.display = "none";
+  });
+  email.addEventListener("focus", () => {
+    emailError.style.display = "none";
+  });
+  textMessage.addEventListener("focus", () => {
+    textMessageError.style.display = "none";
+  });
+
+  
+    let btn = document.querySelector("#test");//button send form 
+      firstName.addEventListener("input", (e) => {
+        if (e.target.value) {
+          name = e.target.value;
+          if ((name.match(valeur_string)) && (name !== " ")) {
+            firstNameError.style.display = "none";
+            btn.removeAttribute("disabled");
+          } else {
+            firstNameError.innerHTML =
+              "Veuillez entrer 2 caractères ou plus pour le champ du prénom.Sans chiffres.";
+            firstNameError.style.display = "inline";
+            btn.setAttribute("disabled", true)
+          }
         }
-        
       });
       lastName.addEventListener("input", (e) => {
-        surname = e.target.value;
-        if (surname.length < 2){ 
-          e.target.style.border = "4px solid red";
-          lastNameError.innerHTML =
-            "Veuillez entrer 2 caractères ou plus pour le champ du nom.";
-          lastNameError.style.display = "inline";
-          submit_btn.setAttribute("disabled", true);
-        } 
-        else {
-          e.target.style.border = "4px solid #51d115";
-          lastNameError.style.display = "none";
-          submit_btn.removeAttribute("disabled");
+        if (e.target.value) {
+          surname = e.target.value;
+          if ((surname.match(valeur_string))&&(surname.length>2)){
+            lastNameError.style.display = "none";
+            btn.removeAttribute("disabled")
+          } else {
+            lastNameError.innerHTML =
+              "Veuillez entrer 2 caractères ou plus pour le champ du nom de famille.";
+            lastNameError.style.display = "inline";
+            btn.setAttribute("disabled", true)
+          }
         }
       });
       email.addEventListener("input", (e) => {
-        emailIn = e.target.value;
-        if (emailIn === " "){
-          e.target.style.border = "4px solid red";
-          emailError.innerHTML = "Veuillez entrer un adress email, c'est obligatoire";
-          emailError.style.display = "inline";
-          submit_btn.removeAttribute("disabled");
-        }else{
-          e.target.style.border = "4px solid #51d115";
-          emailError.style.display = "none";
-          submit_btn.setAttribute("disabled", true);
+        if (e.target.value) {
+          emailIn = e.target.value;
+          if ((emailIn.match(emailRegex) && (emailIn !== " "))) {
+            emailError.style.display = "none";
+            btn.removeAttribute("disabled")
+          } else {
+            emailError.innerHTML = 
+            "Veuillez entrer un adresse email correct";
+            emailError.style.display = "inline";
+            btn.setAttribute("disabled", true);
+          }
         }
       });
-    
       textMessage.addEventListener("input", (e) => {
-        messageIn=e.target.value;
-        if (messageIn.length < 10) {
-          e.target.style.border = "4px solid red";
-          textMessageError.innerHTML =
-            "Veuillez entrer 10 caractères ou plus pour le champ du message.";
-          textMessageError.style.display = "inline";
-          submit_btn.setAttribute("disabled",true)
-        } else {
-          e.target.style.border = "4px solid #51d115";
-          textMessageError.style.display = "none";
-          submit_btn.removeAttribute("disabled");
+        if (e.target.value) {
+          messageIn = e.target.value;
+          if (messageIn.length >= 10 && messageIn.length <= 50) {
+            textMessageError.style.display = "none";
+            btn.removeAttribute("disabled");
+          } else {
+            textMessageError.innerHTML =
+              "Veuillez entrer un message plus long que 100 caractères";
+              textMessageError.style.display = "inline";
+              btn.setAttribute("disabled", true)
+          }
         }
       });
-    //validation of form
-  let submit_btn = document.querySelector("#test");
-  submit_btn.addEventListener("click", (e) => {
+  });
+  let send_btn = document.querySelector("#test");//second checking when sending form
+
+  send_btn.addEventListener("click", function (e) {
     e.preventDefault();
-    if (firstName.value === "" && lastName.value === "" && email.value === "" &&
-      textMessage.value === ""){
-      firstNameError.innerHTML = "Le prénom ne doit pas être vide";
-      firstNameError.style.display = "inline";
-      firstName.style.border = "4px solid red";
-
-      lastNameError.innerHTML = "Le nom ne doit pas être vide";
-      lastNameError.style.display = "inline";
-      lastName.style.border = "4px solid red";
-
-      emailError.innerHTML = "Le email ne doit pas être vide";
-      emailError.style.display = "inline";
-      email.style.border = "4px solid red";
-
-      textMessageError.innerHTML = "Le message ne doit pas être vide";
-      textMessageError.style.display = "inline";
-      textMessage.style.border = "4px solid red";
-      submit_btn.setAttribute("disabled", true);
+   if (name == undefined) {
+    firstNameError.innerHTML =
+        "Veuillez entre un prénom sans chiffres ni signe speciale";
+        firstNameError.style.color = "white";
+        send_btn.setAttribute("disabled", true);
     }
-    if (firstName.value === "") {
-      firstNameError.innerHTML = "Le prénom ne doit pas être vide";
-      firstNameError.style.display = "inline";
-      firstName.style.border = "4px solid red";
-      submit_btn.setAttribute("disabled", true);
-    } else if (firstName.value.length < 2) {
-      firstNameError.innerHTML =
-        "Veuillez entrer 2 caractères ou plus pour le champ du prénom.";
-      firstNameError.style.display = "inline";
-      firstName.style.border = "4px solid red";
-      submit_btn.setAttribute("disabled", true);
-    } else if (firstName.value.length > 20) {
-      firstNameError.innerHTML =
-        "Le prénom ne doit pas être plus grande que 20 caractères";
-      firstNameError.style.display = "inline";
-      firstName.style.border = "4px solid red";
-      submit_btn.setAttribute("disabled", true);
-    } else if (!firstName.value.match(valeur_string)) {
-      firstNameError.innerHTML = "Le prénom ne doit pas avoir des symboles";
-      firstNameError.style.display = "inline";
-      firstName.style.border = "4px solid red";
-      submit_btn.setAttribute("disabled", true);
-    } else if (lastName.value === "") {
-      lastNameError.innerHTML = "Le nom ne doit pas être vide";
-      lastNameError.style.display = "inline";
-      lastName.style.border = "4px solid red";
-      submit_btn.setAttribute("disabled", true);
-    } else if (lastName.value.length < 2) {
-      lastNameError.innerHTML =
-        "Veuillez entrer 2 caractères ou plus pour le champ du nom.";
-      lastNameError.style.display = "inline";
-      lastName.style.border = "4px solid red";
-      submit_btn.setAttribute("disabled", true);
-    } else if (lastName.value.length > 20) {
-      lastNameError.innerHTML =
-        "Le nom ne doit pas être plus grande que 20 caractères";
-      lastNameError.style.display = "inline";
-      lastName.style.border = "4px solid red";
-      submit_btn.setAttribute("disabled", true);
-    } else if (!lastName.value.match(valeur_string)) {
-      lastNameError.innerHTML =
-        "Le nom ne doit pas avoir des espaces et symboles";
-      lastNameError.style.display = "inline";
-      lastName.style.border = "4px solid red";
-      submit_btn.setAttribute("disabled", true);
-    } else if (email.value === "") {
-      emailError.innerHTML = "Le email ne doit pas être vide";
-      emailError.style.display = "inline";
-      email.style.border = "4px solid red";
-      submit_btn.setAttribute("disabled", true);
-    } else if (!email.value.match(emailRegex)) {
-      emailError.innerHTML = "Veuillez entrer un adress email valide";
-      emailError.style.display = "inline";
-      email.style.border = "4px solid red";
-      submit_btn.setAttribute("disabled", true);
-    } else if (textMessage.value === "") {
-      textMessageError.innerHTML = "Le message ne doit pas être vide";
-      textMessageError.style.display = "inline";
-      textMessage.style.border = "4px solid red";
-      submit_btn.setAttribute("disabled", true);
-    } else if (textMessage.value.length < 10) {
-      textMessageError.innerHTML =
-        "Le message doit être plus grande que 10 caractères";
-      textMessageError.style.display = "inline";
-      textMessage.style.border = "4px solid red";
-      submit_btn.setAttribute("disabled", true);
-    } else {
-      firstNameError.style.display = "none";
-      lastNameError.style.display = "none";
-      emailError.style.display = "none";
-      textMessageError.style.display = "none";
-
-      firstName.style.border = "4px solid #fff";
-      lastName.style.border = "4px solid #fff";
-      email.style.border = "4px solid #fff";
-      textMessage.style.border = "4px solid #fff";
-      clean_form();
-}
     
+    if (surname == undefined) {
+      lastNameError.innerHTML =
+        "Veuillez entrer 2 caractères ou plus pour le champ du nom de famille.";
+        lastNameError.style.color = "white";
+        send_btn.setAttribute("disabled", true);
+    }
+    if (emailIn == undefined) {
+      emailError.innerHTML = "Veuillez entrer un adresse email correct";
+      emailError.style.color = "white";
+      send_btn.setAttribute("disabled", true)
+    }
+    if (messageIn == undefined) {
+      textMessageError.innerHTML =
+        "Veuillez entrer un message plus long que 10 caractères";
+      textMessageError.style.color = "white";
+    }
+    else 
+    if (name.match(valeur_string) && surname.match(valeur_string) && emailIn.match(emailRegex) && messageIn.length>=10) {
+      console.log(name)
+      clean_form();
+    }
     let elements_rechange = document.querySelectorAll(".switch");
     elements_rechange.forEach((el) => {
       el.setAttribute("tabIndex", "0");
@@ -257,4 +188,4 @@ function form_checking() {
     textMessage.value = " ";
     
   }
-})}
+}

@@ -40,10 +40,10 @@ function makingLightbox(photographer_pictures) {
         el.setAttribute("tabIndex", "-1");
       });
       //focus to image selected inside to lightbox, display block
-      const modalMediaTab = document.querySelectorAll(".modal_media");
-      for (let i = 0; i < modalMediaTab.length; i++) {
-        if (modalMediaTab[i].style.display === "block") {
-          modalMediaTab[i].firstChild.focus();
+      const modal_media_tab = document.querySelectorAll(".modal_media");
+      for (let i = 0; i < modal_media_tab.length; i++) {
+        if (modal_media_tab[i].style.display === "block") {
+          modal_media_tab[i].firstChild.focus();
         }
       }
     });
@@ -115,14 +115,13 @@ function makingLightbox(photographer_pictures) {
   }
 
   // closing lightbox with x button
-  const closeLightBoxModal = document.querySelector(".modal_close_btn");
-  closeLightBoxModal.addEventListener("click", () => {
-    const modalLightBox = document.querySelector(".lightbox_modal");
-    modalLightBox.style.display = "none";
+  const close_lightBox_modal = document.querySelector(".modal_close_btn");
+  close_lightBox_modal.addEventListener("click", () => {
+    const modal_light_box = document.querySelector(".lightbox_modal");
+    modal_light_box.style.display = "none";
     // giving back tab posibility
     main_div.setAttribute("aria-hidden", "false");
-
-    modalLightBox.setAttribute("aria-hidden", "true");
+    modal_light_box.setAttribute("aria-hidden", "true");
     body_container.classList.remove("no-scroll");
 
     const lastMediaModal = document.querySelectorAll(".media_link");

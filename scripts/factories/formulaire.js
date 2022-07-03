@@ -1,24 +1,22 @@
-//function create form
+//function create form, getting name of the photographer form data
 function contactFormFactory(data) {
   const { name, id } = data;
   function contactFormDOM() {
-    const container = document.createElement("div");
-    container.classList.add("modal");
-    container.setAttribute("aria-label", "formulaire");
+    const container = document.createElement("div"); // creating element div for the form
+    container.classList.add("modal"); 
+    container.setAttribute("aria-label", "formulaire"); 
     let cardForm = `
             <div class="modal_title switch" tabindex="0">
               <h2 class="contactez_moi">Contactez-moi</h2>
               <h2 class="modal_name">${name}</h2>
-              
               <a href="#" aria-label="Close" class="close_form" tabindex="0">
                 <img src="./assets/icons/close.svg" />
               </a> 
             </div>
-        
-          <form id="contact_photograph" role="form" action="" method="">
-            <div role="group" aria-labelledby="coordonnees">
-            <label for="name">Prénom</label>
-            <input type="text" name="name" id="first_name" aria-required="true" minlength="2" tabindex="0"/>
+            <form id="contact_photograph" role="form" action="" method="">
+              <div role="group" aria-labelledby="coordonnees">
+                <label for="name">Prénom</label>
+                <input type="text" name="name" id="first_name" aria-required="true" minlength="2" tabindex="0"/>
             <p class="name_error error_msn"></p>
   
             <label for="last_name">Nom</label>
