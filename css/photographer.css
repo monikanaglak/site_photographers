@@ -330,6 +330,10 @@ div.modal_media {
 .modal_title {
   flex-direction: column;
   margin-left: 10px;
+  margin-top: 50px;
+}
+.error_msn{
+  margin-top:5px;
 }
 .modal_title h2 {
   color: black;

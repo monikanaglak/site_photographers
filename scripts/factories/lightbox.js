@@ -1,4 +1,5 @@
 function lightboxFactory(){
+  //create elements that we need for the lightbox
     const modalLightBox = document.createElement("article");
     modalLightBox.classList.add("modal_carrousel");
     const modalMediaDiv = document.createElement("div");

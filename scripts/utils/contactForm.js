@@ -1,16 +1,15 @@
 function form_checking() {
-  //selecting elements from form
+  //selecting elements from DOM
   const firstName = document.getElementById("first_name");
   const lastName = document.getElementById("last_name");
   const email = document.getElementById("email");
   const textMessage = document.getElementById("your_message");
-  const valeur_string =
-  /*/^(?=(?:[^A-Za-z]*[A-Za-z]){2})(?![^\d~`?!^*¨ˆ;@=$%{}\[\]|\\\/<>#“.,]*[\d~`?!^*¨ˆ;@=$%{}\[\]|\\\/<>#“.,])\S+(?: \S+){0,2}$/;*/
-  /^(?=.{2,50}$)[[a-zàáâäçèéêëìíîïñòóôöùúûü]+(?:['-.\s][a-z]+)*$/i;
+  const valeur_string = /^(?=(?:[^A-Za-z]*[A-Za-z]){2})(?![^\d~`?!^*¨ˆ;@=$%{}\[\]|\\\/<>#“.,]*[\d~`?!^*¨ˆ;@=$%{}\[\]|\\\/<>#“.,])\S+(?: \S+){0,2}$/;
+  /*/^(?=.{2,50}$)[[a-zàáâäçèéêëìíîïñòóôöùúûü]+(?:['-.\s][a-z]+)*$/i;*/
   const emailRegex =
   /^([A-Za-z0-9_\-.+])+@([A-Za-z0-9_\-.])+\.([A-Za-z]{2,})$/;
     
-
+  //selection errors from DOM
   const firstNameError = document.querySelector(".name_error");
   const lastNameError = document.querySelector(".last_name_error");
   const emailError = document.querySelector(".email_error");
@@ -19,7 +18,7 @@ function form_checking() {
   //creating let to keep input value from user
   let name, surname, emailIn, messageIn;
   
-
+  //opening form after click on the button
   contact_button.addEventListener("click", () => {
     const body_div = document.querySelector("body");
     const main_div = document.getElementById("main");
@@ -67,7 +66,7 @@ function form_checking() {
         rem.setAttribute("tabIndex", "0");
       });
     }
-
+    // putting focus on the elements of the form
     firstName.addEventListener("focus", () => {
     firstNameError.style.display = "none";
   });
@@ -81,8 +80,9 @@ function form_checking() {
     textMessageError.style.display = "none";
   });
 
-  
-    let btn = document.querySelector("#test");//button send form 
+    // selecting button envoyer
+    let btn = document.querySelector("#test");
+    //stocking input of user in variables,after we compare it with valeur fixed
       firstName.addEventListener("input", (e) => {
         if (e.target.value) {
           name = e.target.value;
@@ -140,17 +140,17 @@ function form_checking() {
         }
       });
   });
-  let send_btn = document.querySelector("#test");//second checking when sending form
+  //checking input of the user after click on envoyer
+  let send_btn = document.querySelector("#test");
 
   send_btn.addEventListener("click", function (e) {
     e.preventDefault();
    if (name == undefined) {
     firstNameError.innerHTML =
-        "Veuillez entre un prénom sans chiffres ni signe speciale";
+        "Veuillez entre un prénom sans chiffres";
         firstNameError.style.color = "red";
         send_btn.setAttribute("disabled", true);
     }
-    
     if (surname == undefined) {
       lastNameError.innerHTML =
         "Veuillez entrer 2 caractères ou plus.";
@@ -176,6 +176,7 @@ function form_checking() {
       el.setAttribute("tabIndex", "0");
     });
   });
+  //function that clear of form and show input in the console, close the form
   function clean_form() {
     console.log(
       firstName.value,
@@ -189,6 +190,5 @@ function form_checking() {
     lastName.value = " ";
     email.value = " ";
     textMessage.value = " ";
-    
   }
 }
