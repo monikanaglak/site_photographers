@@ -64,7 +64,24 @@ wrapper_images.innerHTML = "";
   });
   return medias_photographer_filtered;
 }
+function myFunction() {
+  document.getElementById("select_images").classList.toggle("show");
+  console.log("click")
+}
 
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
 function displayLightbox() {
   const modalLightBox = document.querySelector(".lightbox_modal");
   modalLightBox.innerHTML = "";
@@ -103,36 +120,50 @@ async function initPhotographers() {
   displayLightbox(photographer_pictures);
   makingLightbox(selected_photographer);
   form_checking();
-
   //selecting menu_dropdown and giving him addeventlistener and listening for change
+  /*const sortByType = document.getElementById("select_images");
+      sortByType.addEventListener("click", () => {
+        const arrowUpDown = document.querySelector(".arrow-down");
+        arrowUpDown.classList.toggle("rotated");
+      });*/
   const sort_by_choice = document.getElementById("select_images");
-  sort_by_choice.addEventListener("change", (e) => {
+ 
+  sort_by_choice.addEventListener("click", (e) => {
+    const change_btn = document.querySelector(".dropbtn");
     let photographer_good_filter;
-    if (e.target.value === "popularity") {
+    if (e.target.id === "popularity") {
       photographer_good_filter = displayPhotos(
         media,
         photographer_all_files,
         "popularity"
       );
+      change_btn.innerHTML= "Popularity"
     }
-    if (e.target.value === "date") {
+    if (e.target.id === "date") {
       photographer_good_filter = displayPhotos(
         media,
         photographer_all_files,
         "date"
       );
+      change_btn.innerHTML= "Date"
     }
-    if (e.target.value === "title") {
+    if (e.target.id === "title") {
       photographer_good_filter = displayPhotos(
         media,
         photographer_all_files,
         "title"
       );
+      change_btn.innerHTML= "Title"
     }
     AddClickEnter();
     AddClickHeart();
     displayLightbox();
     makingLightbox(photographer_good_filter);
+    //rotation arrow after click
+    /*sort_by_choice.addEventListener("click", () => {
+    const arrow_down_and_up = document.querySelector(".arrow-down");
+    arrow_down_and_up.classList.toggle("rotated");
+      });*/
   });
   AddClickHeart();
   AddClickEnter();

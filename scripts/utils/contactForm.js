@@ -1,18 +1,22 @@
 function form_checking() {
+  //selecting elements from form
   const firstName = document.getElementById("first_name");
   const lastName = document.getElementById("last_name");
   const email = document.getElementById("email");
   const textMessage = document.getElementById("your_message");
   const valeur_string =
-    /^(?=.{2,50}$)[[a-zàáâäçèéêëìíîïñòóôöùúûü]+(?:['-.\s][a-z]+)*$/i;
+  /*/^(?=(?:[^A-Za-z]*[A-Za-z]){2})(?![^\d~`?!^*¨ˆ;@=$%{}\[\]|\\\/<>#“.,]*[\d~`?!^*¨ˆ;@=$%{}\[\]|\\\/<>#“.,])\S+(?: \S+){0,2}$/;*/
+  /^(?=.{2,50}$)[[a-zàáâäçèéêëìíîïñòóôöùúûü]+(?:['-.\s][a-z]+)*$/i;
   const emailRegex =
-    /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+  /^([A-Za-z0-9_\-.+])+@([A-Za-z0-9_\-.])+\.([A-Za-z]{2,})$/;
+    
 
   const firstNameError = document.querySelector(".name_error");
   const lastNameError = document.querySelector(".last_name_error");
   const emailError = document.querySelector(".email_error");
   const textMessageError = document.querySelector(".your_message_error");
   const contact_button = document.querySelector(".contact_buttons");
+  //creating let to keep input value from user
   let name, surname, emailIn, messageIn;
   
 
@@ -143,25 +147,25 @@ function form_checking() {
    if (name == undefined) {
     firstNameError.innerHTML =
         "Veuillez entre un prénom sans chiffres ni signe speciale";
-        firstNameError.style.color = "white";
+        firstNameError.style.color = "red";
         send_btn.setAttribute("disabled", true);
     }
     
     if (surname == undefined) {
       lastNameError.innerHTML =
         "Veuillez entrer 2 caractères ou plus.";
-        lastNameError.style.color = "white";
+        lastNameError.style.color = "red";
         send_btn.setAttribute("disabled", true);
     }
     if (emailIn == undefined) {
       emailError.innerHTML = "Veuillez entrer une adresse email correct";
-      emailError.style.color = "white";
+      emailError.style.color = "red";
       send_btn.setAttribute("disabled", true)
     }
     if (messageIn == undefined) {
       textMessageError.innerHTML =
         "Veuillez entrer un message plus long que 10 caractères";
-      textMessageError.style.color = "white";
+      textMessageError.style.color = "red";
     }
     else 
     if (name.match(valeur_string) && surname.match(valeur_string) && emailIn.match(emailRegex) && messageIn.length>=10) {
